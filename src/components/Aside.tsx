@@ -1,9 +1,9 @@
 import type { ComponentProps, FC } from 'react';
 import './Aside.css';
 
-export const Aside: FC <ComponentProps<any>> = () => {
+export const Aside: FC <ComponentProps<'div'>> = (props) => {
   return (
-    <aside> Sidebar </aside>
+    <div {...props}> Sidebar </div>
   );
 }
 

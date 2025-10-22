@@ -1,9 +1,10 @@
 import type { ComponentProps, FC } from 'react';
 import './Content.css';
 
-export const Content: FC <ComponentProps<any>> = () => {
+export const Content: FC <ComponentProps<'div'>> = (props) => {
   return (
-    <Content> Content </Content>
+    <div {...props}> Content </div>
   );
 }
+
 
