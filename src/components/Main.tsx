@@ -7,8 +7,8 @@ import { Content } from './Content';
 export const Main: FC = () => {
   return (
     <main className='Main row'>
-        <Aside className='Sidebar col-4'/>
-        <Content className='Content col-8'/>
+        <Aside className='Sidebar col-2'/>
+        <Content className='Content col-10'/>
     </main>
   );
 }
