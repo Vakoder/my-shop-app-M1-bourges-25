@@ -2,6 +2,9 @@ import type { FC } from "react";
 import "./Footer.css"
 
 export const Footer: FC = () => {
+
+    
+
     return (
         <footer className="text-white">
             <div className="row">
