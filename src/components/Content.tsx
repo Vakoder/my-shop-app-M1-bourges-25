@@ -1,26 +1,31 @@
-import { useState, type ComponentProps, type FC } from "react";
+import { useEffect, useState, type ComponentProps, type FC } from "react";
 import "./Content.css"
 import { Product, type ProductType } from "./Product";
 
 
 export const Content: FC <ComponentProps<'div'>> = (props) => {
-  const [products] = useState<ProductType[]>([
-    {
-        id: "1",
-        name: "White T-shirt",
-        price: 10,
-        description: "A plain white t-shirt made of 100% cotton.",
-        photo: "./src/assets/whiteshirt.jpg"
-    },
-    {
-        id: "2",
-        name: "Black Parka",
-        price: 50,
-        description: "A warm black parka jacket.",
-        photo: "./src/assets/parka.jpg"
-    }
 
-]);
+  const [products, setProducts] = useState<ProductType[]>([])
+
+    useEffect(() => {
+        const loadProducts = async () => {
+            const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+            const img = await fetch("https://jsonplaceholder.typicode.com/photos");
+            const data = await response.json();
+            const images = await img.json();
+            const products : ProductType[] = data.slice(0, 2).map((post: any, index: number) => {
+                return {
+                    id: post.id,
+                    name: post.title,
+                    price: Math.round(Math.random() * 100),
+                    description: post.body,
+                    photo: images[index].url
+                }
+            });
+            setProducts(products);
+        };
+        loadProducts();
+    }, []);
 
   return (
         <div {...props}>
@@ -28,7 +33,7 @@ export const Content: FC <ComponentProps<'div'>> = (props) => {
         <section>
             <div className="d-flex p-2 gap-5">
                 {products.map(product => (
-                    <Product key={product.id} product={product}/>
+                    <Product key={product.id} product={product} />
                 ))}
             </div>
         </section>
