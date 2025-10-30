@@ -1,16 +1,25 @@
-import type { ComponentProps, FC } from 'react';
+import type { FC } from 'react';
+import { Box, List, ListItem, ListItemText } from '@mui/material';
 import './Aside.css';
 
-export const Aside: FC <ComponentProps<'div'>> = (props) => {
-
+export const Aside: FC = () => {
   return (
-    <div {...props}>
-      <ul className='Aside-list list-unstyled d-flex flex-column gap-3'>
-        <li className="Aside-item" >Man </li>
-        <li className="Aside-item" > Woman </li>
-        <li className="Aside-item" > Kid </li><li className="Aside-item" > Dog </li>
-      </ul>
-    </div>
+    <Box className="Sidebar">
+      <List sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+        <ListItem sx={{ py: 0.5 }}>
+          <ListItemText primary="Man" />
+        </ListItem>
+        <ListItem sx={{ py: 0.5 }}>
+          <ListItemText primary="Woman" />
+        </ListItem>
+        <ListItem sx={{ py: 0.5 }}>
+          <ListItemText primary="Kid" />
+        </ListItem>
+        <ListItem sx={{ py: 0.5 }}>
+          <ListItemText primary="Dog" />
+        </ListItem>
+      </List>
+    </Box>
   );
 }
 

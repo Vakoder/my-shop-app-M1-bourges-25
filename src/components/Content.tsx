@@ -1,9 +1,10 @@
-import { useEffect, useState, type ComponentProps, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
+import { Box, Typography } from '@mui/material';
 import "./Content.css"
 import { Product, type ProductType } from "./Product";
 
 
-export const Content: FC <ComponentProps<'div'>> = (props) => {
+export const Content: FC = () => {
 
     const [timeToDisplay,setTimeToDisplay] = useState(new Date().toLocaleTimeString());
 
@@ -35,18 +36,21 @@ export const Content: FC <ComponentProps<'div'>> = (props) => {
     }, []);
 
   return (
-        <div {...props}>
-        <h2>Current Time: {timeToDisplay}</h2>
-        <h2>Man products</h2>
-        <section>
-            <div className="d-flex p-2 gap-5">
-                {products.map(product => (
-                    <Product key={product.id} product={product} />
-                ))}
-            </div>
-        </section>
-        </div>
-
+        <Box className="Content">
+            <Typography variant="h5" component="h2" gutterBottom>
+                Current Time: {timeToDisplay}
+            </Typography>
+            <Typography variant="h4" component="h2" gutterBottom>
+                Man products
+            </Typography>
+            <Box component="section">
+                <Box sx={{ display: 'flex', gap: 3, p: 2, flexWrap: 'wrap' }}>
+                    {products.map(product => (
+                        <Product key={product.id} product={product} />
+                    ))}
+                </Box>
+            </Box>
+        </Box>
   );
 }
 

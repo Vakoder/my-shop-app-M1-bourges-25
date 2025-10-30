@@ -1,4 +1,5 @@
 import { useReducer} from 'react'
+import { Container, Typography, Button, Box } from '@mui/material'
 import './App.css'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
@@ -13,23 +14,25 @@ function App() {
 
 
   return (
-    <div className='container'>
-      <div className="row">
-        <span>Nb of clicks (version useState): {count}</span>
-        <button onClick={increment}>+1</button>
-        <button onClick={decrement}>-1</button>
-        <button onClick={reset}>Reset</button>
-      </div>
-      <div className="row">
-        <span>Nb of clicks (versions useReducer): {count2}</span>
-        <button onClick={()=> dispatch({type: 'INCREMENT'})}>+1</button>
-        <button onClick={()=> dispatch({type: 'DECREMENT'})}>-1</button>
-        <button onClick={()=> dispatch({type: 'RESET'})}>Reset</button>
-      </div>
+    <Container maxWidth="lg">
+      <Box sx={{ mb: 2 }}>
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', mb: 2 }}>
+          <Typography variant="body1">Nb of clicks (version useState): {count}</Typography>
+          <Button variant="contained" onClick={increment}>+1</Button>
+          <Button variant="outlined" onClick={decrement}>-1</Button>
+          <Button variant="text" onClick={reset}>Reset</Button>
+        </Box>
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', mb: 2 }}>
+          <Typography variant="body1">Nb of clicks (versions useReducer): {count2}</Typography>
+          <Button variant="contained" onClick={()=> dispatch({type: 'INCREMENT'})}>+1</Button>
+          <Button variant="outlined" onClick={()=> dispatch({type: 'DECREMENT'})}>-1</Button>
+          <Button variant="text" onClick={()=> dispatch({type: 'RESET'})}>Reset</Button>
+        </Box>
+      </Box>
       <Header/>
       <Main/>
       <Footer/>
-    </div>
+    </Container>
   )
 }
 
